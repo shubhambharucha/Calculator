@@ -1,56 +1,118 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Basic Calculator</title>
+  <title>Simple Calculator</title>
+
   <style>
+    * {
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
     body {
-      font-family: Arial;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+    }
+
+    .calculator {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 260px;
+    }
+
+    h2 {
       text-align: center;
-      margin-top: 50px;
+      margin-top: 0;
+      color: #333;
     }
-    input {
-      width: 200px;
-      height: 40px;
-      font-size: 20px;
+
+    #display {
+      width: 100%;
+      height: 50px;
+      font-size: 22px;
       text-align: right;
+      padding: 10px;
+      border-radius: 8px;
+      border: 2px solid #eee;
+      margin-bottom: 15px;
     }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
     button {
-      width: 50px;
       height: 50px;
       font-size: 18px;
-      margin: 3px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: #f1f1f1;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      background: #ddd;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    .operator {
+      background: #667eea;
+      color: white;
+    }
+
+    .equals {
+      background: #28a745;
+      color: white;
+    }
+
+    .clear {
+      background: #dc3545;
+      color: white;
     }
   </style>
 </head>
 
 <body>
-  <h2>Simple Calculator</h2>
 
-  <input type="text" id="display" readonly>
-  <br><br>
+  <div class="calculator">
+    <h2>Calculator</h2>
 
-  <button onclick="add('7')">7</button>
-  <button onclick="add('8')">8</button>
-  <button onclick="add('9')">9</button>
-  <button onclick="add('/')">÷</button>
-  <br>
+    <input type="text" id="display" readonly>
 
-  <button onclick="add('4')">4</button>
-  <button onclick="add('5')">5</button>
-  <button onclick="add('6')">6</button>
-  <button onclick="add('*')">×</button>
-  <br>
+    <div class="buttons">
+      <button onclick="add('7')">7</button>
+      <button onclick="add('8')">8</button>
+      <button onclick="add('9')">9</button>
+      <button class="operator" onclick="add('/')">÷</button>
 
-  <button onclick="add('1')">1</button>
-  <button onclick="add('2')">2</button>
-  <button onclick="add('3')">3</button>
-  <button onclick="add('-')">−</button>
-  <br>
+      <button onclick="add('4')">4</button>
+      <button onclick="add('5')">5</button>
+      <button onclick="add('6')">6</button>
+      <button class="operator" onclick="add('*')">×</button>
 
-  <button onclick="add('0')">0</button>
-  <button onclick="calculate()">=</button>
-  <button onclick="clearDisplay()">C</button>
-  <button onclick="add('+')">+</button>
+      <button onclick="add('1')">1</button>
+      <button onclick="add('2')">2</button>
+      <button onclick="add('3')">3</button>
+      <button class="operator" onclick="add('-')">−</button>
+
+      <button onclick="add('0')">0</button>
+      <button class="equals" onclick="calculate()">=</button>
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="operator" onclick="add('+')">+</button>
+    </div>
+  </div>
 
   <script>
     function add(value) {
@@ -62,7 +124,7 @@
         document.getElementById("display").value =
           eval(document.getElementById("display").value);
       } catch {
-        alert("Invalid Expression");
+        document.getElementById("display").value = "Error";
       }
     }
 
@@ -70,5 +132,6 @@
       document.getElementById("display").value = "";
     }
   </script>
+
 </body>
 </html>
